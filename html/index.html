@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>OSSBBQ CheckIn</title>
+
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Set Apple icons for when prototype is saved to home screen -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="touch-icons/apple-touch-icon-57x57.png">
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link rel="stylesheet" href="css/ratchet.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Include the compiled Ratchet JS -->
+    <script src="js/ratchet.js"></script>
+    
+
+  </head>
+  <body>
+
+  <!-- Make sure all your bars are the first things in your <body> -->
+  <header class="bar-title">
+    <h1 class="title">
+        <img src="img/refresh.png" class="refresh">
+        OSSBBQ <span class="count"></span>
+        <img src="img/top.png" class="top">
+    </h1>
+  </header>
+
+  <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+  <div class="content">
+      <div class="content-padded">
+          <div class="search-wrapper">  
+              <input type="search" placeholder="Search" id="name-search">
+              <img src="img/clear_left.png" class="clear-input" />
+          </div>
+    </div>
+
+    <ul id="member-list" class="list inset">
+    </ul>
+
+  </div>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/q.js/0.9.2/q.min.js"></script>
+  <script type="text/javascript" src="http://devint.adg.local:8603/socket.io/socket.io.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script type="text/javascript" src="js/jquery.blockUI.js"></script>
+<!--  <script type="text/javascript" src="js/jquery.resizecrop-1.0.3.min.js"></script> -->
+ <script type="text/javascript" src="js/jquery.nailthumb.1.0.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+
+  <script>
+
+       var app = new Application();
+        app.setMeetupKey("59776c2a34571f27353a3d251702dc");
+        app.setYQLSource("https://query.yahooapis.com/v1/public/yql?format=json&env=" + encodeURIComponent("store://datatables.org/alltableswithkeys") +  "&q=");
+        app.addEvent(122858462, 'WordPress DC');
+        app.addEvent(122922822, 'DC PHP');
+        app.addEvent(122076582, 'JQuery DC');
+        app.setEndpoint('http://devint.adg.local:8603');
+        app.init();
+
+    </script>
+
+  </body>
+</html>

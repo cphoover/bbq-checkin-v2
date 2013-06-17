@@ -1,0 +1,75 @@
+        body, .content{
+            position:relative;
+        }
+        .welcome {
+          line-height: 1.5;
+          color: #555;
+          }
+
+
+         #member-list li.hidden{
+            display:none;
+         }
+
+        #member-list .profile-pic-wrapper{ 
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            height: 57px;
+            width:57px;
+            overflow:hidden;
+            background: #ddd;
+
+        
+        }
+        #member-list .profile-pic{
+            width:57px;
+        }
+
+        #member-list .profile-pic.hidden{
+            opacity:0;
+        }
+    
+        li[checked-in="1"]{
+            background:black;
+            color:#FFF;
+        }
+
+        .blockUI h1{
+            font-size:12px;
+        }
+
+        .bar-title .top, .bar-title .refresh{
+            position: absolute;
+            right: 9px;
+            top: 12px;
+        }
+
+        .bar-title .refresh{
+            left: 15px;
+            right: inherit;
+        }
+
+        .bar-title{
+
+            background: url('../img/wood.png');
+
+        }
+
+        .bar-title .title{
+            text-shadow: 3px 2px 0px #000;
+            font-family: AmericanTypewriter;
+            font-weight: normal;
+            letter-spacing: 2px;
+
+        }
+
+        .search-wrapper{
+            position:relative;
+        }
+
+        .clear-input{
+            position:absolute;
+            right:9px;
+            top:0px;
+        }
