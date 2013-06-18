@@ -1,10 +1,9 @@
 
-var port = 8603;
+var port = 4000;
 var io = require('socket.io').listen(port),
     dirty = require('dirty'),
     db = dirty('rsvps.db');
 
-io.set( 'origins', '*devint.adg.local*:*' );
 
 db.on('load', main);
 

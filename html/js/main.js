@@ -8,7 +8,7 @@
 
 
     function Application(){
-        this.thumbs     = false;
+        this.thumbs     = true;
         this.meetupKey  = null;
         this.YQLSource  = null;
         this.events     = {};
@@ -214,15 +214,22 @@
                 throw "something bad happened got more/less result sets than requested";
               }
             
-             
+	      // get rid of dupes
+	      var addedUsers = [];            
+ 
               results.forEach(function(result){
                 var members = result.items.item;
                 if(typeof self.events[members[0].event_id] !=="undefined") {
                     self.events[members[0].event_id].members = _.filter(members, function(_member){ 
-                        return _member.response==="yes";
+			addedUsers.push(_member.member_id);
+				
+                        return (addedUsers.indexOf(_member.member_id) === -1 ) || _member.response==="yes";
                     });
                 }
               });
+
+		addedUsers = null;
+
         
              _cb(); 
     };
