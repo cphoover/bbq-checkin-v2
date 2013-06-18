@@ -7,7 +7,14 @@
     });
 
 
-    function Application(){
+    function Application(_opts){
+
+        this.opts = $.extend({
+            bigThumbs : false,
+            defaultAvatar : false
+            
+        }, _opts);
+
         this.thumbs     = true;
         this.meetupKey  = null;
         this.YQLSource  = null;
@@ -266,7 +273,6 @@
                     for(var memberIndex = 0; memberIndex<cEvent.members.length; memberIndex ++){
             
                         _member = cEvent.members[memberIndex];
-                        console.log('_member', _member);
 
                         var memberListItem = document.createElement('li');
                         memberListItem.className = "member";
@@ -289,8 +295,17 @@
 
 
                             if(_member.photo_url !== null){
-                                profilePic.src = _member.photo_url.replace(/member_/, "thumb_");
+                                if(self.opts.bigThumbs === true){
+                                    profilePic.src = _member.photo_url;
+                                } else{
+                                    profilePic.src = _member.photo_url.replace(/member_/, "thumb_");
+                                }
+                            } else{
+                                 if(self.opts.defaultAvatar === true){
+                                    profilePic.src = 'img/avatar.png';
+                                 }
                             }
+                            
                             profilePicWrapper.appendChild(profilePic);
                             memberListItem.appendChild(profilePicWrapper);
                         }

@@ -4,46 +4,18 @@
     <meta charset="utf-8">
     <title>OSSBBQ CheckIn</title>
 
-    <!-- Sets initial viewport load and disables zooming  -->
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
     <!-- Set Apple icons for when prototype is saved to home screen -->
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icons/apple-touch-icon-114x114.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icons/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="touch-icons/apple-touch-icon-57x57.png">
-
-    <!-- Include the compiled Ratchet CSS -->
-    <link rel="stylesheet" href="css/ratchet.css">
-    <link rel="stylesheet" href="css/main.css">
-
-    <!-- Include the compiled Ratchet JS -->
-    <script src="js/ratchet.js"></script>
-    
-
+    <link rel="stylesheet" href="css/board.css" />
   </head>
   <body>
 
   <!-- Make sure all your bars are the first things in your <body> -->
-  <header class="bar-title">
-    <h1 class="title">
-        <img src="img/refresh.png" class="refresh">
-        OSSBBQ <span class="count"></span>
-        <img src="img/top.png" class="top">
-    </h1>
-  </header>
 
   <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
   <div class="content">
-      <div class="content-padded">
-          <div class="search-wrapper">  
-              <input type="search" placeholder="Search" id="name-search">
-              <img src="img/clear_left.png" class="clear-input" />
-          </div>
-    </div>
 
     <ul id="member-list" class="list inset">
     </ul>
@@ -59,7 +31,7 @@
 
   <script>
 
-       var app = new Application();
+       var app = new Application({bigThumbs: true, defaultAvatar: true});
         app.setMeetupKey("59776c2a34571f27353a3d251702dc");
         app.setYQLSource("https://query.yahooapis.com/v1/public/yql?format=json&env=" + encodeURIComponent("store://datatables.org/alltableswithkeys") +  "&q=");
         app.addEvent(122858462, 'WordPress DC');
@@ -67,6 +39,47 @@
         app.addEvent(122076582, 'JQuery DC');
         app.setEndpoint('http://devint.adg.local:4000');
         app.init();
+
+
+var currentpos = 0,
+    alt = 1,
+    curpos1 = 0,
+    curpos2 = -1
+
+    function initialize() {
+        startit()
+    }
+
+    function scrollwindow() {
+        if (document.all)
+            temp = document.body.scrollTop
+        else
+            temp = window.pageYOffset
+        if (alt == 0)
+            alt = 1
+        else
+            alt = 0
+        if (alt == 0)
+            curpos1 = temp
+        else
+            curpos2 = temp
+        if (curpos1 != curpos2) {
+            if (document.all)
+                currentpos = document.body.scrollTop + 1
+            else
+                currentpos = window.pageYOffset + 1
+            window.scroll(0, currentpos)
+        } else {
+            currentpos = 0
+            window.scroll(0, currentpos)
+        }
+    }
+
+    function startit() {
+        setInterval("scrollwindow()", 10)
+    }
+window.onload = initialize
+
 
     </script>
 
